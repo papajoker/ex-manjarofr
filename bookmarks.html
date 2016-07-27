@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Manjaro Forum fr</title>
+    <link href="res/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="res/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <!--base target="manjaro"-->
+  </head>
+  <body>
+    <header>
+      <a href="index.php" target="manjaro"><h3>Manjaro Forum fr &nbsp; <span class="fa fa-home"></span></h3></a>
+      <ul id="menu">
+        <li id="bar"><span class="fa fa-bars"></span></li>
+        <li id="onnew">Nouveaux</li>
+        <li id="onder">Derniers</li>
+        <li id="onbookmark">Favoris</li>
+      </ul>
+    </header>
+    <div id="wrap">
+      <section>
+        <article id='news'>News ?</article>
+      </section>
+
+      <hr />
+
+      <section>
+        <article id='who'>Qui ?</article>
+      </section>
+
+      <hr />
+
+      <div id='loader'>chargeur ajax</div>
+    </div>
+    <footer id="status"/>
+    <script src="js/Urls.js"></script>
+    <script src="js/Bookmarks.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html> 
+
+envoi un msg du site vers background de l'entension
+dans le site (content.js)
+chrome.runtime.sendMessage({ action: 'mettreajour', status: state });
+
+    function requestPreferences(callback) {
+        chrome.runtime.sendMessage({ action: 'mettreajour' }, function (response) {
+            callback(response);
+        });
+    }
+
+    //listen for background events
+    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+      switch (request.action) {
+        case 'mettreajour': break;
+      }
+    }
+
+    Dans background.js
+
+    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+      switch (request.action) {
+        case 'mettreajour': break;
+      }
+    }

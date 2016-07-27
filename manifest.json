@@ -1,0 +1,40 @@
+{
+  "manifest_version": 2,
+  "name": "Manjaro phpbb fr",
+  "version": "0.1",
+  "description": "Extension pour le forum manjaro.fr",
+  "permissions": [
+    "tabs",
+    "notifications",
+    "http://www.manjaro.fr/*",
+    "https://www.manjaro.fr/*"
+    ],
+  "background": {
+        "scripts": ["js/Bookmarks.js","js/background.js"]
+    },
+  "browser_action": {
+    "default_popup": "main.html",
+    "default_title": "Manjaro Forum fr"
+  },  
+  "content_scripts": [
+    {
+      "matches": [
+        "http://www.manjaro.fr/forum/search.php*",
+        "http://www.manjaro.fr/forum/index.php*",
+        "http://www.manjaro.fr/forum/viewforum.php*",
+        "http://www.manjaro.fr/forum/viewtopic.php*",
+        "http://www.manjaro.fr/forum/posting.php*"
+        ],
+      "css" : ["res/css/content.css"],
+      "js" : ["js/jquery-3.1.0.min.js","js/content.js"]
+    }
+  ],
+  "icons": {
+    "16":  "res/manjaro-logo.16.png",  
+    "48":  "res/manjaro-logo.48.png" 
+  }/*,
+  // pas compatible firefox ??
+  "applications": { "gecko": { "id": "manjaforum@manjaro.fr" }  }
+  */
+
+}
