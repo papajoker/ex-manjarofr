@@ -5,6 +5,16 @@ var tabid       = -1;
 var urls        = new Urls('urls').load();
 var bookmarks   = new Bookmarks('bookmarks').load();
 
+function notifier(text,duree=3000){
+  var n=new Notification('Manjaro.fr Forum', {
+    icon: 'res/manjaro-logo.48.png',
+    body: text
+  });
+  n.onshow = function () { 
+    setTimeout(n.close.bind(n), duree); 
+  }
+}
+
 function onclick(event) {
     event.preventDefault();
     var src= urlFofo + event.currentTarget.getAttribute("href");
@@ -40,12 +50,15 @@ $.get( urlFofo+"index.php", function( data,status,xhr ) {
     var tmp= $(data).find('li.icon-logout').text();
     if ('Connexion'==tmp) {
         getNews('active_topics');
-        $( "#status" ).html( 'non connecté ' );        
+        var status='non connecté';
+        $( "#status" ).html( status );        
     }
     else {
-        getNews('newposts');        
-        $( "#status" ).html( 'connecté ' );
+        getNews('newposts'); 
+        var status='connecté';       
     }
+    $( "#status" ).html( status );
+    notifier(status);
 } );
 
 
