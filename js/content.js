@@ -50,18 +50,19 @@
         $(id).html(ret);
     }
 
+    /*
+    pas d'intéret :)
     getWho('#who');
+    */
 
     $('div.post li.quote-icon').each(function(){
         var src=$(this).find('a').attr('href').replace('posting.php','viewtopic.php');
         var id=src.substr(src.lastIndexOf("="));
         var title=$(this).parents('div.postbody').find('h3:first').text();
-        //alert('titre:'+tmp);
         $(this).after('<li class="fav-icon"><a href="#" title="Favoris" data-href="'+src+'" data-title="'+title+'"><span>F</span></a></li>');
     });
     $( "li.fav-icon a" ).click(function(event) {
         event.preventDefault();
-        //alert( "add fav :"+$(this).data('href') + ' '+$(this).data('title') );
         chrome.runtime.sendMessage({ action: 'setbookmark', href: $(this).data('href'), title: $(this).data('title') }, function(isok){
             alert( (isok)?"Favoris ajouté":'Favoris supprimé' );         
         });
