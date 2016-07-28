@@ -5,9 +5,9 @@ var tabid       = -1;
 var urls        = new Urls('urls').load();
 var bookmarks   = new Bookmarks('bookmarks').load();
 
-function notifier(text,duree=3000){
-  var n=new Notification('Manjaro.fr Forum', {
-    icon: 'res/manjaro-logo.48.png',
+function notifier(text,duree=3000,title='Manjaro.fr Forum'){
+  var n=new Notification(title, {
+    icon: chrome.extension.getURL('res/manjaro-logo.48.png'),
     body: text
   });
   n.onshow = function () { 
@@ -42,7 +42,7 @@ function setBookmark(id,title) {
         }
     });
 
-$('header a').click(onclick); 
+$('header a').click(onclick);
 
 /* ------------------------- */ 
 

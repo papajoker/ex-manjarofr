@@ -1,12 +1,12 @@
 (function main() {
     
     $("#wrap").css("min-width", "300");
-    $('body').append('<div id="who">???</div>');
+    $('body').append('<div id="who"></div>');
 
          
     $('.inner .signature').each( function() {
         $(this).prepend( "<p>+</p>" );
-        /*marche mais pas bon si post est trop long : fignature hors ecran
+        /*marche mais pas bon si post est trop long : signature hors ecran
         var idpost= $(this).attr('id').substring(3); // sig123456
 
         $('#profile'+idpost+' dt a').hover( 
@@ -25,8 +25,8 @@
         */
     });
     
-    function notifier(text,duree=3000){
-        var n=new Notification('Manjaro.fr Forum', {
+    function notifier(text,duree=3000,title='Manjaro.fr Forum'){
+        var n=new Notification(title, {
             icon: 'https://github.com/papajoker/ex-manjarofr/raw/master/res/manjaro-logo.48.png',
             body: text
         });
@@ -47,7 +47,7 @@
         }
     });
 
-    function getWho(id) {
+    /*function getWho(id) {
         var whows = document.getElementsByClassName("username-coloured");
         var ret='';
         $('#page-body h3 + p a.username-coloured').each(function(){
@@ -56,7 +56,6 @@
         });
         $(id).html(ret);
     }
-
     /*
     pas d'intéret :)
     getWho('#who');

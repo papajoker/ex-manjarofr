@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Manjaro phpbb fr",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Extension pour le forum manjaro.fr",
   "permissions": [
     "tabs",
@@ -10,7 +10,7 @@
     "https://www.manjaro.fr/*"
     ],
   "background": {
-        "scripts": ["js/Bookmarks.js","js/background.js"]
+        "scripts": ["js/Urls.js","js/Bookmarks.js","js/jquery-3.1.0.min.js","js/background.js"]
     },
   "browser_action": {
     "default_popup": "main.html",
