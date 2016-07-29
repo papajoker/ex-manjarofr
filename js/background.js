@@ -2,7 +2,7 @@
 
 const urlFofo = 'http://www.manjaro.fr/forum/';
 
-function notifier(text, duree = 3000, title = 'Nouveau Post') {
+function notifier(text, duree = 3000, title = 'Manjaro Forum fr') {
     var n = new Notification(title, {
         icon: chrome.extension.getURL('res/manjaro-logo.48.png'),
         body: text
@@ -22,6 +22,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             var ret = bookmarks.add(urlFofo, request.href, request.title);
             bookmarks.save();
             sendResponse(ret);
+            break;
+        case 'notify':
+            notifier(request.txt, request.duree, request.title);
             break;
     }
 });

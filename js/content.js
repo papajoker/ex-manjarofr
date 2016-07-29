@@ -36,17 +36,6 @@
         */
     });
 
-    function notifier(text, duree = 3000, title = 'Manjaro.fr Forum') {
-        var n = new Notification(title, {
-            icon: 'https://github.com/papajoker/ex-manjarofr/raw/master/res/manjaro-logo.48.png',
-            body: text
-        });
-        n.onshow = function() {
-            setTimeout(n.close.bind(n), duree);
-        }
-    }
-
-
     $('object').each(function(index, element) {
         var src = $(this).find('param:first').first().attr("value");
         var youtube = src.indexOf('/v/');
@@ -85,7 +74,12 @@
             href: $(this).data('href'),
             title: $(this).data('title')
         }, function(isok) {
-            notifier((isok) ? "Favoris ajouté" : 'Favoris supprimé');
+            chrome.runtime.sendMessage({
+                action: 'notify',
+                txt: (isok) ? "Favoris ajouté" : 'Favoris supprimé',
+                duree: 3000,
+                title: $(this).data('title')
+            });
         });
     });
 
