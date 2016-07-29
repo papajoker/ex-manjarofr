@@ -64,7 +64,7 @@ function setBookmark(id, title) {
             var status = 'connecté';
         }
         $("#status").html(status);
-        notifier(status, 1000);
+        notifier(status, 1000); //TODO: reglage dans options
     });
 
 

@@ -2,6 +2,17 @@
 
     $("#wrap").css("min-width", "300");
     $('body').append('<div id="who"></div>');
+    //$('img[src*="images/smilies"]').css({'max-height':'25px'});
+    $('#bbpalette').val('Couleur');
+
+    /* -- deplacer l'entete vers le bas -- */
+
+    var tmp = $('.headerbar').detach();
+    tmp.appendTo('#page-body');
+    var tmp = $('#page-header div:first').detach();
+    tmp.appendTo('#wrap');
+
+    /* ----------------------- */
 
 
     $('.inner .signature').each(function() {

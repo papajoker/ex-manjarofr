@@ -19,11 +19,7 @@
   "content_scripts": [
     {
       "matches": [
-        "http://www.manjaro.fr/forum/search.php*",
-        "http://www.manjaro.fr/forum/index.php*",
-        "http://www.manjaro.fr/forum/viewforum.php*",
-        "http://www.manjaro.fr/forum/viewtopic.php*",
-        "http://www.manjaro.fr/forum/posting.php*"
+        "http://www.manjaro.fr/forum/*.php*"
         ],
       "css" : ["res/css/content.css"],
       "js" : ["js/jquery-3.1.0.min.js","js/content.js"]
