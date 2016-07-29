@@ -1,11 +1,11 @@
 (function main() {
-    
+
     $("#wrap").css("min-width", "300");
     $('body').append('<div id="who"></div>');
 
-         
-    $('.inner .signature').each( function() {
-        $(this).prepend( "<p>+</p>" );
+
+    $('.inner .signature').each(function() {
+        $(this).prepend("<p>+</p>");
         /*marche mais pas bon si post est trop long : signature hors ecran
         var idpost= $(this).attr('id').substring(3); // sig123456
 
@@ -24,25 +24,25 @@
         );
         */
     });
-    
-    function notifier(text,duree=3000,title='Manjaro.fr Forum'){
-        var n=new Notification(title, {
+
+    function notifier(text, duree = 3000, title = 'Manjaro.fr Forum') {
+        var n = new Notification(title, {
             icon: 'https://github.com/papajoker/ex-manjarofr/raw/master/res/manjaro-logo.48.png',
             body: text
         });
-        n.onshow = function () { 
-            setTimeout(n.close.bind(n), duree); 
+        n.onshow = function() {
+            setTimeout(n.close.bind(n), duree);
         }
     }
 
 
-    $('object').each(function( index, element ) {
-        var src= $( this ).find('param:first').first().attr("value");
+    $('object').each(function(index, element) {
+        var src = $(this).find('param:first').first().attr("value");
         var youtube = src.indexOf('/v/');
-        if ( youtube != -1 ) {
+        if (youtube != -1) {
             // c'est du youtube
-            src= src.replace('\/v\/','\/embed\/')+'?rel=0&vq=hd720'
-            //console.log("source video: "+src);
+            src = src.replace('\/v\/', '\/embed\/') + '?rel=0&vq=hd720'
+                //console.log("source video: "+src);
             $(this).replaceWith('<iframe width="576" height="324" src="' + src + '" frameborder="0" allowfullscreen></iframe>');
         }
     });
@@ -61,16 +61,20 @@
     getWho('#who');
     */
 
-    $('div.post li.quote-icon').each(function(){
-        var src=$(this).find('a').attr('href').replace('posting.php','viewtopic.php');
-        var id=src.substr(src.lastIndexOf("="));
-        var title=$(this).parents('div.postbody').find('h3:first').text();
-        $(this).after('<li class="fav-icon"><a href="#" title="Favoris" data-href="'+src+'" data-title="'+title+'"><span>F</span></a></li>');
+    $('div.post li.quote-icon').each(function() {
+        var src = $(this).find('a').attr('href').replace('posting.php', 'viewtopic.php');
+        var id = src.substr(src.lastIndexOf("="));
+        var title = $(this).parents('div.postbody').find('h3:first').text();
+        $(this).after('<li class="fav-icon"><a href="#" title="Favoris" data-href="' + src + '" data-title="' + title + '"><span>F</span></a></li>');
     });
-    $( "li.fav-icon a" ).click(function(event) {
+    $("li.fav-icon a").click(function(event) {
         event.preventDefault();
-        chrome.runtime.sendMessage({ action: 'setbookmark', href: $(this).data('href'), title: $(this).data('title') }, function(isok){
-            notifier( (isok)?"Favoris ajouté":'Favoris supprimé' );
+        chrome.runtime.sendMessage({
+            action: 'setbookmark',
+            href: $(this).data('href'),
+            title: $(this).data('title')
+        }, function(isok) {
+            notifier((isok) ? "Favoris ajouté" : 'Favoris supprimé');
         });
     });
 
